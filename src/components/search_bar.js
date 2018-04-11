@@ -15,11 +15,11 @@ class SearchBar extends Component {
     render() {
         // update state with setState()
         return (
-            <div> 
+            <div className="search-bar"> 
                 <input
                  value={this.state.term}
                  onChange={ event => this.setState({ term: event.target.value })} />
-                 value: { this.state.term }
+                 { this.state.term }
             </div>
         );
     }
