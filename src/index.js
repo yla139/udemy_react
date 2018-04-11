@@ -17,8 +17,13 @@ class App extends Component {
             selectedVideo: null 
         };
 
-        // call api and get video data - return a list of videos
-        YTSearch({key: API_KEY, term: 'ichiro'}, (videos) => {
+        // initialize search
+        this.videoSearch('ichiro');
+    }
+
+    // call api and get video data - return a list of videos
+    videoSearch(term) {
+        YTSearch({key: API_KEY, term: term}, (videos) => {
             this.setState({ 
                 videos: videos,
                 selectedVideo: videos[0],
@@ -26,11 +31,10 @@ class App extends Component {
         });
     }
 
-
     render() {
         return (
         <div>
-            <SearchBar />
+            <SearchBar onSearchTermChange={term => this.videoSearch(term) }/>
             <VideoDetail video={this.state.selectedVideo} />
             <VideoList
                 onVideoSelect={ selectedVideo => this.setState({ selectedVideo }) }   // takes video and updates selectedvideo
